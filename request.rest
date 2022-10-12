@@ -1,0 +1,40 @@
+// Create a user
+POST https://myloan0.herokuapp.com/users
+Content-Type:  application/json
+
+{
+    "firstname": "user",
+    "username": "username",
+    "password": "123",
+    "confirmpassword": "123",
+    "role": "user"
+ 
+}
+
+###
+// get All Users
+GET https://myloan0.herokuapp.com/taux
+###
+// get Single user
+
+GET http://localhost:5000/users/f76f92d9-c161-4885-9633-6f0db36113cd
+
+
+###
+// Login user
+POST http://localhost:5000/dpretuser
+Content-Type:  application/json
+
+{
+   
+    "userid": 1
+}
+
+###
+// Login user
+POST http://localhost:5000/username
+Content-Type:  application/json
+
+{
+    "search": "ga"
+}
