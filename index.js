@@ -26,7 +26,7 @@ const store = new sessionStore({
 (async()=> {
     await db.sync();
 })()
-app.use(cors({origin:true,credentials: true}));
+
 app.use(express.json());
 app.use(session({
     secret: process.env.SESS_SECRET,
@@ -37,6 +37,7 @@ app.use(session({
         secure: 'auto'
     }
 }));
+app.use(cors({origin:true,credentials: true}));
 app.use(UsersRoute);
 app.use(TauxRoute);
 app.use(DemandePretRoute);
@@ -55,7 +56,7 @@ app.use(AuthRoute)
 // Static Images Folder
 app.use('/Images', express.static('./Images'))
 
-
-app.listen(process.env.PORT || 5000, () => {
+store.sync()
+app.listen(process.env.APP_PORT, () => {
     console.log('Server up and running...');
 })
