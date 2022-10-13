@@ -15,10 +15,12 @@ import AuthRoute from './routes/AuthRoute.js'
 dotenv.config();
 
 
-const cors = require('cors');
-const express = require('express');
 
 const app = express();
+
+// parse various different custom JSON types as JSON
+app.use(bodyParser.json({ type: 'application/*+json' }));
+
 app.use(cors());
 app.options('*', cors());
 
