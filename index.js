@@ -20,13 +20,7 @@ const app = express();
 
 // parse various different custom JSON types as JSON
 
-app.use(cors({
-    'allowedHeaders': ['sessionId', 'Content-Type'],
-    'exposedHeaders': ['sessionId'],
-    'origin': 'http://localhost:3000',
-    'methods': 'GET,HEAD,PUT,PATCH,POST,DELETE',
-    'preflightContinue': false
-  }));
+app.use(cors());
 
 
 const sessionStore = SequelizeStore(session.Store);
