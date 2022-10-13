@@ -37,7 +37,7 @@ app.use(session({
         secure: 'auto'
     }
 }));
-app.use(cors({origin:'http://http://localhost:3000',credentials: true}));
+app.use(cors({origin:'http://localhost:3000',credentials: true}));
 app.use(UsersRoute);
 app.use(TauxRoute);
 app.use(DemandePretRoute);
