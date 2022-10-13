@@ -14,8 +14,13 @@ import MessagerieRoute from './routes/MessagerieRoute.js'
 import AuthRoute from './routes/AuthRoute.js'
 dotenv.config();
 
-const app = express();
 
+const cors = require('cors');
+const express = require('express');
+
+const app = express();
+app.use(cors());
+app.options('*', cors());
 
 const sessionStore = SequelizeStore(session.Store);
 
@@ -37,7 +42,6 @@ app.use(session({
         secure: 'auto'
     }
 }));
-app.use(cors({origin:'http://localhost:3000',credentials: true}));
 app.use(UsersRoute);
 app.use(TauxRoute);
 app.use(DemandePretRoute);
