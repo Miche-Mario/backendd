@@ -20,7 +20,7 @@ const app = express();
 
 // parse various different custom JSON types as JSON
 
-app.use(cors({ credentials: true, origin: "http://localhost:3000" }));
+app.use(cors({ credentials: true, origin: "*" }));
 
 
 
