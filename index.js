@@ -36,13 +36,14 @@ const store = new sessionStore({
 })() */
 
 app.use(session({
-    secret: 'keyboard cat',
+    secret: ttydtydtkdtytydtyckgytyt,
+    resave: false,
+    saveUninitialized: true,
+    store: store,
     cookie: {}
 }));
-app.use((req, res, next) => {
-    res.header('Access-Control-Allow-Origin', '*');
-    next();
-  });
+app.use(cors({credentials: true, origin: 'http://localhost:3000'}));
+
 app.use(express.json())
 
 app.use(UsersRoute);
