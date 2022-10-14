@@ -20,6 +20,7 @@ app.use(bodyParser.urlencoded({ extended: false }))
 
 // parse application/json
 app.use(bodyParser.json())
+
 const sessionStore = SequelizeStore(session.Store);
 
 const store = new sessionStore({
