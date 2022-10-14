@@ -14,15 +14,15 @@ import { verifyUser, adminOnly } from '../middleware/AuthUser.js';
 
 const router = express.Router();
 
-router.get('/users',verifyUser,adminOnly, getUsers);
-router.post('/username',verifyUser,adminOnly, getUserByName);
+router.get('/users', getUsers);
+router.post('/username', getUserByName);
 
 router.post('/userget', getUserById);
 router.post('/users', upload, createUser);
 router.patch('/users/:id',upload, updateUser);
 router.patch('/useriban/:id', updateIban);
 
-router.delete('/users/:id',verifyUser,adminOnly, deleteUser );
+router.delete('/users/:id', deleteUser );
 
 
 
