@@ -13,7 +13,7 @@ Content-Type:  application/json
 
 ###
 // get All Users
-GET https://myloan0.herokuapp.com/taux
+GET https://michegh.herokuapp.com/me
 ###
 // get Single user
 
@@ -22,12 +22,13 @@ GET http://localhost:5000/users/f76f92d9-c161-4885-9633-6f0db36113cd
 
 ###
 // Login user
-POST http://localhost:5000/dpretuser
+POST https://michegh.herokuapp.com/me
 Content-Type:  application/json
 
 {
    
-    "userid": 1
+    "username": "user",
+    "password": "user"
 }
 
 ###
