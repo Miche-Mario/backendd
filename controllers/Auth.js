@@ -10,7 +10,7 @@ export const Login = async (req, res) => {
     if(!user) return res.status(404).json({msg: "User doesn't not exist" });
 
     if(user.password !==  req.body.password) return res.status(400).json({msg: "Wrong Password"});
-    req.session.userId = user.uuid;
+    req.sessionID =  user.uuid;
     const uuid = user.uuid;
     const id = user.id;
     const firstname = user.firstname;
@@ -22,11 +22,13 @@ export const Login = async (req, res) => {
 }
 
 export const Me = async (req, res) => {
-
+    if(!req.sessionID) {
+        return res.status(401).json({msg: "Please Login to your account!" })
+    }
     const user = await Users.findOne({
         attributes: ['uuid','id', 'firstname', 'username', 'role', 'profile'],
         where: {
-            uuid: req.session.userId
+            uuid: req.sessionID
         }
     });
     if(!user) return res.status(404).json({msg: "User doesn't not exist" });
