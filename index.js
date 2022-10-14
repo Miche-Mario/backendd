@@ -35,7 +35,10 @@ app.use(session({
         secure: 'auto'
     }
 }));
-
+app.use((req, res, next) => {
+    res.header('Access-Control-Allow-Origin', '*');
+    next();
+  });
 app.use(cors({
     credentials: true,
     origin: 'http://localhost:3000'
