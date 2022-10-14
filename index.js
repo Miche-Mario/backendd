@@ -14,16 +14,7 @@ import MessagerieRoute from './routes/MessagerieRoute.js'
 import AuthRoute from './routes/AuthRoute.js'
 dotenv.config();
 
-
-
 const app = express();
-
-// parse various different custom JSON types as JSON
-
-
-
-
-
 
 const sessionStore = SequelizeStore(session.Store);
 
@@ -31,20 +22,24 @@ const store = new sessionStore({
     db: db
 });
 
-/* (async()=> {
-    await db.sync();
-})() */
+// (async()=>{
+//     await db.sync();
+// })();
 
 app.use(session({
-    secret: 'ttydtydtkdtytydtyckgytyt',
+    secret: process.env.SESS_SECRET,
     resave: false,
     saveUninitialized: true,
     store: store,
-    cookie: {}
+    cookie: {
+        secure: 'auto'
+    }
 }));
-app.use(cors({credentials: true, origin: 'http://localhost:3000'}));
 
-app.use(express.json())
+app.use(cors({
+    credentials: true,
+    origin: 'http://localhost:3000'
+}));
 
 app.use(UsersRoute);
 app.use(TauxRoute);
@@ -64,7 +59,8 @@ app.use(AuthRoute)
 // Static Images Folder
 app.use('/Images', express.static('./Images'))
 
-store.sync()
-app.listen(process.env.PORT || 5000, () => {
+// store.sync();
+
+app.listen(process.env.PORT, ()=> {
     console.log('Server up and running...');
-})
+});
