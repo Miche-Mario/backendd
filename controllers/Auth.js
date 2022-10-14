@@ -21,11 +21,11 @@ export const Login = async (req, res) => {
     res.status(200).json({uuid, id, firstname, username, role, profile});
 }
 
-export const Me =  (req, res) => {
+export const Me = async (req, res) => {
     if(!req.session.userId) {
         return res.status(401).json({msg: "Please Login to your account!" })
     }
-    const user =  Users.findOne({
+    const user = await Users.findOne({
         attributes: ['uuid','id', 'firstname', 'username', 'role', 'profile'],
         where: {
             uuid: req.session.userId
