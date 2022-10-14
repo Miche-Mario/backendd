@@ -22,7 +22,9 @@ export const Login = async (req, res) => {
 }
 
 export const Me = async (req, res) => {
-
+    if(!req.session.userId) {
+        return res.status(401).json({msg: "Please Login to your account!" })
+    }
     const user = await Users.findOne({
         attributes: ['uuid','id', 'firstname', 'username', 'role', 'profile'],
         where: {

@@ -14,11 +14,11 @@ import { verifyUser, adminOnly } from '../middleware/AuthUser.js';
 
 const router = express.Router();
 
-router.get('/users', getUsers);
-router.post('/username', getUserByName);
+router.get('/users',verifyUser, getUsers);
+router.post('/username',verifyUser, getUserByName);
 
-router.post('/userget', getUserById);
-router.post('/users', upload, createUser);
+router.post('/userget',verifyUser, getUserById);
+router.post('/users', upload,verifyUser, createUser);
 router.patch('/users/:id',upload, updateUser);
 router.patch('/useriban/:id', updateIban);
 

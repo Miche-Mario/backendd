@@ -23,7 +23,6 @@ const app = express();
 
 
 
-app.use(cors({credentials: true, origin: 'http://localhost:3000'}));
 
 
 const sessionStore = SequelizeStore(session.Store);
@@ -32,20 +31,20 @@ const store = new sessionStore({
     db: db
 });
 
-(async()=> {
+/* (async()=> {
     await db.sync();
-})()
+})() */
 
-app.use(express.json());
 app.use(session({
-    secret: process.env.SESS_SECRET,
-    resave: false,
-    saveUninitialized: true,
-    store: store,
-    cookie: {
-        secure: 'auto'
-    }
+    secret: 'keyboard cat',
+    cookie: {}
 }));
+app.use((req, res, next) => {
+    res.header('Access-Control-Allow-Origin', '*');
+    next();
+  });
+app.use(express.json())
+
 app.use(UsersRoute);
 app.use(TauxRoute);
 app.use(DemandePretRoute);
