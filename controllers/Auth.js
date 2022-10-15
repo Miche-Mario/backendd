@@ -11,23 +11,25 @@ export const Login = async (req, res) => {
 
     if(user.password !==  req.body.password) return res.status(400).json({msg: "Wrong Password"});
     req.session.userId = user.uuid;
-
     const uuid = user.uuid;
     const id = user.id;
     const firstname = user.firstname;
     const username = user.username;
     const role = user.role
     const profile = user.profile
-console.log(req.session.userId)
-    res.status(200).json({uuid, id, firstname, username, role, profile, });
+
+    res.status(200).json({uuid, id, firstname, username, role, profile});
 }
 
 export const Me = async (req, res) => {
-
+    console.log(req.session.userId)
+    if(req.session.userId == null) {
+        return res.status(401).json({msg: "Please Login to your account!" })
+    }
     const user = await Users.findOne({
         attributes: ['uuid','id', 'firstname', 'username', 'role', 'profile'],
         where: {
-            uuid: '2cc9e78e-90a9-4a0c-80df-dcbfa40ec2b5'
+            uuid: req.session.userId
         }
     });
     if(!user) return res.status(404).json({msg: "User doesn't not exist" });
