@@ -23,22 +23,21 @@ app.use(bodyParser.json())
 
 const sessionStore = SequelizeStore(session.Store);
 
-const store = new sessionStore({
+var store = new sessionStore({
     db: db
 });
 
 (async()=>{
     await db.sync();
 })();
-
+const oneDay = 1000 * 60 * 60 * 24;
 app.use(session({
     secret: process.env.SESS_SECRET,
     resave: false,
     saveUninitialized: true,
     store: store,
-    cookie: {
-        secure: 'auto'
-    }
+    cookie: { maxAge: oneDay },
+    proxy: true
 }));
 app.use((req, res, next) => {
     res.header('Access-Control-Allow-Origin', '*');
