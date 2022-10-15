@@ -22,7 +22,7 @@ export const Login = async (req, res) => {
 }
 
 export const Me = async (req, res) => {
-    console.log(req.session.userId)
+    console.log(session.userId)
     if(req.session.userId == null) {
         return res.status(401).json({msg: "Please Login to your account!" })
     }
