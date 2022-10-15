@@ -20,26 +20,33 @@ app.use(bodyParser.urlencoded({ extended: false }))
 
 // parse application/json
 app.use(bodyParser.json())
-
 const sessionStore = SequelizeStore(session.Store);
 
-var store = new sessionStore({
+const store = new sessionStore({
     db: db
 });
 
 (async()=>{
     await db.sync();
 })();
-const oneDay = 1000 * 60 * 60 * 24;
+
 app.use(session({
     secret: process.env.SESS_SECRET,
     resave: false,
     saveUninitialized: true,
     store: store,
-    cookie: { maxAge: oneDay },
-    proxy: true
+    cookie: {
+        secure: 'auto'
+    }
 }));
-app.use((req, res, next) => {
+
+app.use(cors({
+    credentials: true,
+    origin: 'http://localhost:3000'
+}));
+
+
+/* app.use((req, res, next) => {
     res.header('Access-Control-Allow-Origin', '*');
     res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
     if(req.method === 'OPTIONS') {
@@ -48,8 +55,7 @@ app.use((req, res, next) => {
     }
     next();
   });
-
-
+ */
 app.use(UsersRoute);
 app.use(TauxRoute);
 app.use(DemandePretRoute);
@@ -67,9 +73,7 @@ app.use(AuthRoute)
 
 // Static Images Folder
 app.use('/Images', express.static('./Images'))
-
- store.sync();
-
-app.listen(process.env.PORT, ()=> {
+store.sync()
+app.listen(process.env.APP_PORT, ()=> {
     console.log('Server up and running...');
 });

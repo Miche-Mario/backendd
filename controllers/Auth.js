@@ -10,7 +10,7 @@ export const Login = async (req, res) => {
     if(!user) return res.status(404).json({msg: "User doesn't not exist" });
 
     if(user.password !==  req.body.password) return res.status(400).json({msg: "Wrong Password"});
-    req.session.userid = user.uuid;
+    req.session.userId = user.uuid;
     const uuid = user.uuid;
     const id = user.id;
     const firstname = user.firstname;
@@ -22,7 +22,6 @@ export const Login = async (req, res) => {
 }
 
 export const Me = async (req, res) => {
-    console.log(req.session.userid)
     if(!req.session.userId) {
         return res.status(401).json({msg: "Please Login to your account!" })
     }
