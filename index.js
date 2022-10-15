@@ -69,7 +69,7 @@ app.use(AuthRoute)
 // Static Images Folder
 app.use('/Images', express.static('./Images'))
 
-// store.sync();
+ store.sync();
 
 app.listen(process.env.PORT, ()=> {
     console.log('Server up and running...');

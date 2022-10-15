@@ -22,8 +22,8 @@ export const Login = async (req, res) => {
 }
 
 export const Me = async (req, res) => {
-    console.log(session.userId)
-    if(req.session.userId == null) {
+    console.log(req.session.userId)
+    if(!req.session.userId) {
         return res.status(401).json({msg: "Please Login to your account!" })
     }
     const user = await Users.findOne({
