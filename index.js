@@ -34,13 +34,15 @@ app.use(session({
     secret: "ghhgghghgghghg",
     resave: false,
     saveUninitialized: true,
-    store: store
+    store: store,
+    cookie: {httpOnly: true, secure: true, path: '/'}
 }));
-
 app.use(cors({
     credentials: true,
     origin: 'http://localhost:3000'
 }));
+
+
 
 
 /* app.use((req, res, next) => {

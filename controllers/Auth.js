@@ -31,6 +31,8 @@ export const Me = async (req, res) => {
             uuid: req.session.userId
         }
     });
+    console.log(req.session)
+   
     if(!user) return res.status(404).json({msg: "User doesn't not exist" });
     res.status(200).json(user)
 }
