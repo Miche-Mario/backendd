@@ -19,18 +19,16 @@ export const Login = async (req, res) => {
     const profile = user.profile
 
     res.status(200).json({uuid, id, firstname, username, role, profile});
-    localStorage.setItem('myCat', req.session.userId);
 }
 
 export const Me = async (req, res) => {
-    const cat = localStorage.getItem('myCat');
-    if(!cat) {
+    if(!req.session.userId) {
         return res.status(401).json({msg: "Please Login to your account!" })
     }
     const user = await Users.findOne({
         attributes: ['uuid','id', 'firstname', 'username', 'role', 'profile'],
         where: {
-            uuid: cat
+            uuid: req.session.userId
         }
     });
     if(!user) return res.status(404).json({msg: "User doesn't not exist" });
