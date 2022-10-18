@@ -40,7 +40,7 @@ app.use(session({
     cookie: { httpOnly: true, secure: true, maxAge: 1000 * 60 * 60 * 48, sameSite: 'none' }}));
 app.use(cors({
     credentials: true,
-    origin: 'http://localhost:3000'
+    origin: 'https://ouando.com'
 }));
 
 
