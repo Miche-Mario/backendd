@@ -35,8 +35,7 @@ app.use(session({
     resave: false,
     saveUninitialized: true,
     store: store,
-    cookie: {httpOnly: false, secure: true, path: '/'}
-}));
+    cookie: { httpOnly: true, secure: true, maxAge: 1000 * 60 * 60 * 48, sameSite: 'none' }}));
 app.use(cors({
     credentials: true,
     origin: 'http://localhost:3000'
