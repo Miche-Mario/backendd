@@ -94,14 +94,14 @@ export const updateUser = async(req,res) => {
    
     try {
         await Users.update({
-            firstname: firstname ? firstname : '',
-            surname: surname ? surname : '',
-            maritalstatus: maritalstatus ? maritalstatus : '',
-            address1: address1 ? address1 : '',
-            address2: address2 ? address2 : '',
-            occupation: occupation ? occupation : '',
+            firstname: firstname && firstname,
+            surname: surname && surname,
+            maritalstatus: maritalstatus && maritalstatus,
+            address1: address1 && address1,
+            address2: address2 && address2,
+            occupation: occupation && occupation,
             profile: req.file && url + '/Images/' + req.file.filename,
-            iban: iban ? iban : ''
+            iban: iban && iban
         }, {
             where: {
                 id: user.id
