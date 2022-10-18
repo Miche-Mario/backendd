@@ -41,7 +41,7 @@ app.use(session({
 }));
 app.use(cors({
     credentials: true,
-    origin: 'https://ouando.com/'
+    origin: 'https://ouando.com'
 }));
 
 
