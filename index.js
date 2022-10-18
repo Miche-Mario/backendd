@@ -34,11 +34,7 @@ app.use(session({
     secret: "ghhgghghgghghg",
     resave: false,
     saveUninitialized: true,
-    store: store,
-    cookie: {
-        secure: true,
-        sameSite: 'none'
-    }
+    store: store
 }));
 
 app.use(cors({
