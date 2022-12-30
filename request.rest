@@ -1,12 +1,12 @@
 // Create a user
-POST https://https://michegh.herokuapp.com/users
+POST https://michegh.herokuapp.com/users
 Content-Type:  application/json
 
 {
-    "firstname": "user",
-    "username": "username",
-    "password": "123",
-    "confirmpassword": "123",
+    "firstname": "Admin",
+    "username": "bridge",
+    "password": "bridege666",
+    "confirmpassword": "bridege666",
     "role": "admin"
  
 }
